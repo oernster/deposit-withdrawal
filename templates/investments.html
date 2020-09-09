@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Investments</title>
+</head>
+<body>
+    <form action="/deposit" method="post">
+        {% csrf_token %}
+        <h2>Deposit</h2>
+        <label for="investment_name">Investment Name</label>
+        <input type="text" id="investment_name" name="investment_name"/>
+        <label for="commitment_id">Commitment Id</label>
+        <input type="text" id="commitment_id" name="commitment_id"/>
+        <label for="fund_id">Fund Id</label>
+        <input type="text" id="fund_id" name="fund_id"/>
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date"/>
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" name="amount"/>
+        <input type="submit" value="Submit"/>
+    </form>
+    {% if investments %}
+        <h2>Withdraw</h2>
+        {% for investment in investments %}
+            <form action="/withdraw" method="post">
+                {% csrf_token %}
+                <input type="text" name="investment_name" value="{{ investment.name }}"/>
+                <p>Amount&nbsp&nbsp<input type="number" class="amount" name="amount"/>&nbsp&nbsp<input type="submit" value="Submit"/></p>
+                </br></br>
+            </form>
+        {% endfor %}
+    {% endif %}
+    </br>
+    {% if investments  %}
+        <h2>Summary</h2>
+        {% for investment in investments %}
+            <p>{{ investment.name }}</p>
+            <table>
+                <thead>
+                    <th>Commitment Id</th>
+                    <th>Fund Id</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </thead>
+                {% for c in investment.commitments.all %}
+                    <tbody>
+                        <td>{{ c.identifier }}</td>
+                        <td>{{ c.fund }}</td>
+                        <td>{{ c.date }}</td>
+                        <td>{{ c.amount }}</td>
+                    </tbody>
+                {% endfor %}
+            </table>
+        {%  endfor %}
+    {%  endif %}
+</body>
+</html>
