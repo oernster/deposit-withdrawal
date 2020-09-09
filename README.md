@@ -18,5 +18,5 @@ the form of FIFO (First In First Out).
 
 Enjoy!
 
-PS to run the test cases you neewd the following command:
+PS to run the test cases you need the following command:
 python manage.py test validusrm.test_cases
