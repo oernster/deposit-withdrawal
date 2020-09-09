@@ -17,3 +17,6 @@ Now you can withdraw from a particular investment.  It should take your investme
 the form of FIFO (First In First Out).
 
 Enjoy!
+
+PS to run the test cases you neewd the following command:
+python manage.py test validusrm.test_cases
