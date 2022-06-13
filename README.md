@@ -1,4 +1,4 @@
-# validusrm
+# Investment test GUI
 Deposit and withdrawal site for investments
 
 First navigate to the root directory.
